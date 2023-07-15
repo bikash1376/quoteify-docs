@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quoteify API</title>
+    <style>
+
+      body {
+        background-image: url("dark-night.jpg");
+        background-position: center;
+        background-color: rgb(19, 19, 41, 0.5);
+        background-blend-mode: multiply;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        width: 97%;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        width: 100%;
+        background-color: #110e19;
+      }
+
+      .navbar__logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffffff;
+        cursor: pointer;
+      }
+
+      .navbar__links {
+        display: flex;
+        align-items: center;
+        margin-right: 5%;
+      }
+
+      .navbar__links a {
+        margin-right: 20px;
+        color: #ffffff;
+        text-decoration: none;
+      }
+      #documentation {
+        border: 0.2px solid transparent;
+        display: flex;
+        padding: 5px 8px;
+        align-items: center;
+        font-size: 20px;
+      }
+      #documentation:hover {
+        color: rgb(225, 221, 221);
+        border: 0.2px solid white;
+        padding: 5px 8px;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: #161220;
+        border-radius: 8px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        border: 1px solid gray;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .container h1 {
+        font-size: 32px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        margin-bottom: 20px;
+      }
+
+      .container p {
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+
+      .get-started-button {
+        background-color: #ffffff;
+        color: #222222;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 4px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+      }
+
+      .get-started-button:hover {
+        background-color: #c5c1c1;
+        box-shadow: 0 2px 22px rgba(136, 223, 44, 0.364);
+        border: 0;
+      }
+
+      /* Styling the footer section */
+      .footer {
+        background-color: #161220;
+        padding: 20px;
+        text-align: center;
+        color: #ffffff;
+        bottom: 0;
+        width: 100%;
+      }
+
+      .footy {
+        width: 100px;
+        padding: 40px;
+        cursor: pointer;
+      }
+
+      .footy:hover {
+        width: 100px;
+        padding: 40px;
+        cursor: pointer;
+      }
+
+      .footy h4 {
+        padding-right: 20px;
+        color: #ffffff;
+        border: 1px solid transparent;
+        padding: 3px 1px;
+      }
+
+      .footy h4:hover {
+        padding-right: 20px;
+        color: #d5bdfa;
+        border: 1px solid white;
+        padding: 3px 1px;
+      }
+
+      .bikash-profile a {
+        text-decoration: none;
+        list-style-type: none;
+        color: rgb(115, 173, 255);
+      }
+
+      .github-logo img {
+        width: 24px;
+        height: 24px;
+        filter: invert(1);
+        cursor: pointer;
+      }
+
+      .heart-logo-footy img {
+        filter: invert(42%) sepia(96%) saturate(5230%) hue-rotate(333deg)
+          brightness(90%) contrast(119%);
+      }
+      .snippet-box {
+        width: 600px;
+        height: 40px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: rgb(76, 76, 97);
+        display: flex;
+        font-family: monospace;
+        align-items: center;
+        padding: 0 10px;
+      }
+      .snippet-box-output {
+        width: 600px;
+        height: 130px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: rgb(76, 76, 97);
+        display: flex;
+        font-family: monospace;
+        align-items: center;
+        padding: 0 10px;
+      }
+
+      ul li {
+        margin-bottom: 15px;
+      }
+      ul li code {
+        font-size: 18px;
+        background-color: rgba(116, 123, 76, 0.6);
+        margin-bottom: 10px;
+      }
+      #api-usage-headings {
+        color: rgb(246, 246, 163);
+      }
+      .usage-heading {
+        color: rgb(206, 194, 245);
+      }
+      .about-section {
+      height: 200px;
+    }
+
+
+    @media screen and (max-width: 768px) {
+  .container {
+    max-width: 70%;
+    font-size:10px;
+    /* text-align: center; */
+    /* Add any other styles you want to apply for smaller devices */
+  }
+  .container h1 {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+
+      .container p {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .get-started-button {
+        background-color: #ffffff;
+        color: #222222;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+      }
+      .footy h4 {
+        font-size: 17px;
+      }
+      .snippet-box-output {
+        width: 95%;
+      }
+      .snippet-box {
+        width: 95%;
+        /* padding: 5px; */
+      }
+}
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="navbar__logo"><a href="index.html" style="text-decoration: none; color: white;">Quoteify API</a></div>
+        <div class="navbar__links">
+          <a href="index.html" id="documentation">Home</a>
+          <div class="github-logo documentation">
+            <a href="https://github.com/bikash1376/"
+              ><img
+                src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
+                alt="GitHub Logo"
+                width="24"
+                height="24"
+            /></a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <h1>Quoteify API - Documentation</h1>
+
+        <h2 class="usage-heading">Base URL</h2>
+        <p>The base URL for accessing the Quoteify API is:</p>
+        <div class="snippet-box">https://quoteifyapi.onrender.com/quotes/</div>
+
+<br><br>
+
+        <h2 class="usage-heading">Endpoints</h2>
+        <ul>
+          <li>
+            <code>GET /quotes/random</code>: Retrieve a random quote in JSON
+            format.
+          </li>
+          <li>
+            <code>GET /quotes</code>: Retrieve all quotes available in the API
+            in JSON format.
+          </li>
+          <li>
+            <code>GET /quotes/:id</code>: Get a specific quote by its ID in JSON
+            format.
+          </li>
+        </ul>
+<br><br>
+        <h2 class="usage-heading">API Usage</h2>
+        <h3>
+          To use the Quoteify API, send HTTP requests to the appropriate
+          endpoints mentioned below.
+        </h3>
+<br>
+        <div class="code-snippet">
+          <h4 id="api-usage-headings">Example Usage - Get Random Quote</h4>
+          <p>Request:</p>
+          <div class="snippet-box">
+             GET https://quoteifyapi.onrender.com/quotes/random
+          </div>
+        </div>
+
+        <p>Response:</p>
+          <div class="snippet-box-output">
+            { <br>
+              "id": 42, <br>
+              "text": "Let me live, love, and say it well in good sentences.", <br>
+              "author": "Sylvia Plath"
+              <br>
+            }
+          </div>
+<br>
+          <div class="code-snippet">
+            <h4 id="api-usage-headings">Example Usage - Get all the quotes</h4>
+            <p>Request:</p>
+            <div class="snippet-box">
+              GET https://quoteifyapi.onrender.com/quotes/
+            </div>
+          </div>
+  
+          <p>Response:</p>
+            <div class="snippet-box-output" style="height: 320px;">
+              { <br>
+                "id": 1, <br>
+                "text": "I find that the harder I work, the more luck I seem to have.", <br>
+                "author": "Thomas Jefferson"
+                <br>
+              }, <br> <br>
+              { <br>
+                "id": 2, <br>
+                "text": "Let me live, love, and say it well in good sentences.", <br>
+                "author": "Sylvia Plath"
+                <br>
+              },<br> <br>
+              { <br>
+                "id": 3
+                ...(more)
+            </div>
+  
+<br>
+
+            <div class="code-snippet">
+              <h4 id="api-usage-headings">Example Usage - Get Quote by ID</h4>
+              <p>Request:</p>
+              <div class="snippet-box">
+                GET https://quoteifyapi.onrender.com/quotes/57
+              </div>
+            </div>
+    
+            <p>Response:</p>
+              <div class="snippet-box-output" style="height: 130px;">
+                { <br>
+                  "id": 57, <br>
+                  "text": "The best way to predict the future is to create it.", <br>
+                  "author": "Peter Drucker",
+                  <br>
+                }
+        
+      </div>
+      <p>
+        Explore the API endpoints and start incorporating the power of quotes
+        into your applications today!
+      </p>
+
+
+      <div class="about-section" style="color: rgb(222, 171, 241);">
+        <p>Feel free to reach out to the Quoteify API team at <a href = "mailto: bikash13763@gmail.com" style="text-decoration: none; color: rgb(243, 243, 187);">bikash13763@gmail.com</a> for any questions or support.</p>
+        <p>We hope you enjoy using the Quoteify API and find inspiration in the collection of 100+ quotes it offers!</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footy">
+        <h4>Docs</h4>
+        <h4><a href="https://www.linkedin.com/in/bikash-sahu-2a3371245/" style="text-decoration: none; color: white;">Contact</a></h4>
+        <h4>Github</h4>
+      </div>
+      <p>&copy; 2023 Quoteify API.</p>
+      <p class="bikash-profile">
+        Made with
+        <span class="heart-logo-footy"
+          ><img
+            src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/icons/heart-fill.svg"
+            alt="❤"
+        /></span>
+        by <a href="https://github.com/bikash1376/">Bikash</a>
+      </p>
+    </footer>
+  </body>
+</html>
